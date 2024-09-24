@@ -222,18 +222,24 @@ disable_root: true
 
 https://wiki.archlinux.org/title/Users_and_groups
 # Creating a Droplet
-https://docs.digitalocean.com/reference/doctl/reference/compute/droplet/
 
+With an SSH key pair generated, an Arch Linux cloud image imported, and a cloud-init YAML file created a DigitalOcean Droplet can be created.
 
-`--size` specs of droplet 
-insert a link for reference or use command `doctl compute size list`
-`--region` region VM is hosted 
-insert a link forereference or use `doctl compute region list`
-`--user-data-file` path to YAML file for cloud-init. 
-s-1vcpu-512mb-10gb 
+1. Choose a Droplet configuration (Droplet size) from the command `doctl compute size list`
+This commands list all the Droplet sizes available on DigitalOcean. In this guide, we will s-1vcpu-512mb-10gb or <slug>, the cheapest size available.
+(screenshot of output)
+
+2. To create a droplet, use the command
 `doctl compute droplet create <droplet-name> --image <image> --size <size> --region <region> --user-data-file <path> --ssh-keys <key>`
+- `--image <IMAGE-NAME>` Image to be installed on the droplet, specified in [Adding an Arch Linux Image to DigitalOcean](#adding-an-arch-linux-image-to-digitalocean)
+- `--size <SIZE>` Droplet size
+- `--region <REGION>` What server Droplet is created on. In this guide we will use `SFO3` 
+- `--user-data-file <FILEPATH>` configured cloud-init YAML file from [Createing a Cloud-Init YAML Configuration](#creating-a-cloud-init-yaml-configuration) to be exectued on the Droplet
+- `--ssh-keys <PUB-KEY>` name of public key given to DigitalOcean in [Adding a Public Key to your DigitalOcean Account](#adding-a-public-key-to-your-digitalocean-account)
 
+(output)
 
+https://docs.digitalocean.com/reference/doctl/reference/compute/droplet/
 # Connecting to Droplet
 
 get ip: `doctl compute droplet get <droplet-name> --format PublicIPv4`
