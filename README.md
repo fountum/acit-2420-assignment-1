@@ -85,13 +85,35 @@ https://docs.digitalocean.com/reference/doctl/how-to/install/
 
 
 # Creating an SSH Key Pair
-`ssh-keygen` utility should be installed on your Windows/MacOs/Linux system.
 
-`ssh-keygen -t ed25519 -f ~/.ssh/do-key -C 'arch-linux-09-21'`
+## What is Secure Shell (SSH)?
+Secure Shell (SSH) is a protocol that allows for data to sent securely over unsecure networks. SSH is used to remotely connect to servers and issue commands. It uses public key cryptography to encrypt and decrypt data, as well as authenitcate users. At a high level, the protocol works like this in the context of remote servers:
+- An SSH key pair is generated, resulting in one *public key* and *private key*
+  - Public keys are used to encrypt data; this is given to the server
+  - Private keys are used to decrypt data; this is kept by the user/client
+  - The keys themselves are put in a cryptography algorithm with data to produces what looks like random data but is actually a very specific output from the key + data  
+  - Only the corrisponding key pairs work with each other
+- When establishing a connection to the serve, the client provides the private key to authenticate themself
+- When sending data, the server will use the public key to encrypt the data, which can only be decrypted using the private key
+  - This prevents 'man-in-the-middle' attacks as attackers will not beable to view the contents of the data if they get a hold of it
 
-`-t` Type of encryption used to generate the key.
-`-f` Path where the key is created. 
-`-C` an optional comment. this is appended on to the end of the public key
+(citations please)
+https://www.cloudflare.com/learning/access-management/what-is-ssh/
+https://www.cloudflare.com/learning/ssl/how-does-public-key-encryption-work/
+https://www.cloudflare.com/learning/ssl/what-is-asymmetric-encryption/
+ 
+To generate an SSH key pair, the utility `ssh-keygen` can be using in the terminal on a majority of Windows/MacOs/Linux systems.
+
+Usage:
+`ssh-keygen -t <ENCRYPTION> -f <PATH> -C <COMMENT>`
+Command Explanation:
+- `-t` Type of encryption used to generate the key. We will use `ed25519` in this example.
+- `-f` Path where the key is created and name of key. This should be the `.ssh` directory in your home directory.
+- `-C` An optional comment that's appended on to the end of the public key
+
+Example Arch Linux usage:
+`ssh-keygen -t ed25519 -f ~/.ssh/do-key -C 'ACIT-2420-Assignement1'`
+
 
 Check folder for keys, add screenshots
 
