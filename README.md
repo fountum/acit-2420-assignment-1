@@ -155,6 +155,20 @@ DigitalOcean hosts a number of pre-configures images for Debain, Ubuntu, and Cen
 
 # Creating a cloud-init YAML configuration
 
+Cloud-init is a package create to quickly set up and configure systems, VMs, or cloud-based servers. Using a given configuration file, cloud-init will apply those settings without additional manual input. It comes pre-packaged with most cloud images of operating systems, such as the cloud image of Arch Linux we are using. In this step we will create a YAML file to pass to cloud-init when we create our Droplet.
+
+There are many configuration options available using cloud-init. In this guide we will use cloud-init to:
+- Add users
+- Install packages
+- Disable logging in as root via SSH
+
+(explain YAML?)
+(citation)
+
+1. Create a file titled `config.yml`
+2. Open the file in a text editor
+3. Copy the following text and paste it into the file:
+
 ```
 #cloud-config
 users:
@@ -181,21 +195,27 @@ packages:
 disable_root: true
 ```
 
-`#cloud-config` required at the start of file for cloud-init to recongize the file as cloud config data
+- `#cloud-config` *Header required at the start of file*. Cloud-init will not recongize the file as cloud config data if omitted
     - citation : https://cloudinit.readthedocs.io/en/latest/explanation/format.html#headers-and-content-types
-`users` defines users and their properties
-- `default` creates the `default_user` defined in `system_info`
-name: user's name
-lock_passwd: prevents logging in as this user use a password. Can only be log in using SSH key.
-gecos: optional comment for user
-group: groups users is member of. `wheel` is an admin group
-sudo: user's sudo privleges. 
-- First `ALL` specifies what hosts commands can be ran on
-- Second `(ALL)` specifies what users commands can be run as
-- `NOPASSWD:` enables the use of sudo without a password
-- Third `ALL` allows all commands to be used
-- citaton?
+- `users` defines users and their properties
+  - `default` creates the `default_user` defined in `system_info`
+- `name`: user's name
+- `lock_passwd`: prevents logging in as this user use a password. Can only be log in using SSH key.
+- `gecos`: optional comment for user
+- `group`: groups users is member of. `wheel` is an admin group given to users to perform administrative actions
+- `sudo`: user's sudo privleges. 
+  - First `ALL` specifies what hosts commands can be ran on
+  - Second `(ALL)` specifies what users commands can be run as
+  - `NOPASSWD:` enables the use of sudo without a password
+  - Third `ALL` allows all commands to be used
+  - citaton?
+- `disable_root`: If set to true, disables logging as the root user using SSH
+  - Every Linux distribution has a root user named `root`, which has unlimited privleges
+  - Attackers can much better odds of bruteforcing a password for `root` than bruteforcing  both a username and password
+  - Disabling root log in prevents this vulernability
+  - NOTE: it's still possible to log in as the root user after connection is established
 
+  https://wiki.archlinux.org/title/Sudo#Disable_root_login
 - ref: https://wiki.archlinux.org/title/Users_and_groups#User_groups
 
 
