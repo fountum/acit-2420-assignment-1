@@ -242,9 +242,20 @@ This commands list all the Droplet sizes available on DigitalOcean. In this guid
 https://docs.digitalocean.com/reference/doctl/reference/compute/droplet/
 # Connecting to Droplet
 
-get ip: `doctl compute droplet get <droplet-name> --format PublicIPv4`
-`ssh -i ~/.ssh/<key-name> arch@<ip>`
+Once your Droplet is created you can remotely connect to it using `SSH` in your terminal.
 
+1. Copy the public IP of your droplet from the command `doctl compute droplet get <DROPLET-NAME> --format PublicIPv4`
+- This command gets information about the droplet `<DROPLET-NAME>`
+- The flag `--format` changes the output to show only the public IPv4 address
+
+2. To connect to the Droplet, type in the following command:
+`ssh -i <PRIVATE-KEY> arch@<IP>`
+- `<PRIVATE-KEY>` Filepath of the corrisponding private key. If you've followed this guide, it should be located in the `~/.ssh` directory.
+- `<IP>` The public IP of the droplet from step 1
+
+(Screenshot, first time connecting etc..)
+
+If the connection is sucessful, your command line will change. (be more specific)
 
 # Verifying Configuration
 `pacman -Q <package-name>`
