@@ -258,8 +258,18 @@ Once your Droplet is created you can remotely connect to it using `SSH` in your 
 If the connection is sucessful, your command line will change. (be more specific)
 
 # Verifying Configuration
-`pacman -Q <package-name>`
-`cat /etc/passwd`
+
+Formatting errors in the YAML file can result in your cloud-init configuration not executing properly. Unfortuneatly, cloud-init won't directly throw errors so we will have to manually check if the configuration was executed. This section will only cover changes made in the YAML script provided. For more information about debugging cloud-init, see [How to debug cloud-init](https://cloudinit.readthedocs.io/en/latest/howto/debugging.html).
+
+## Checking Packages
+`pacman -Q` returns the local package database on your system. In other words it returns a list of every package installed on your system. Combining it with string will find packages that pattern matches that string. If you use `pacman -Q <PACKAGE>` with packages listed in the YAML file, you should see the packages listed. If not, cloud-init did not execute the configuration properly.
+
+## Checking User Creation
+The `gecos` entries when defining a user section in the YAML file are stored in `/etc/passwd`. By viewing the contents of this file using `cat`, you should be able to see if cloud-init created users: `cat /etc/passwd`
+
+(use a better command here)
+
+https://cloudinit.readthedocs.io/en/latest/howto/debug_user_data.html
 
 # External Resources
 (doctl Reference)[https://docs.digitalocean.com/reference/doctl/reference/]
