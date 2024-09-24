@@ -18,7 +18,7 @@ Assignment 1 for ACIT 2420
 
 # Introduction
 
-This tutorial will teach you how to create Arch Linux based virtual machines using DigitalOcean with the `doctl` command line interface. No knowledge of DigitalOcean, `doctl`, cloud-init, or Linux systems is needed to understand this guide. 
+This tutorial will teach you how to create Arch Linux based virtual machines using DigitalOcean with the `doctl` command line interface. No knowledge of DigitalOcean, `doctl`, cloud-init, or Linux systems is needed to understand this guide. Most of the steps in this guide will be done using a terminal. 
 
 # Installing and Configuring doctl
 
@@ -101,7 +101,7 @@ Secure Shell (SSH) is a protocol that allows for data to sent securely over unse
 https://www.cloudflare.com/learning/access-management/what-is-ssh/
 https://www.cloudflare.com/learning/ssl/how-does-public-key-encryption-work/
 https://www.cloudflare.com/learning/ssl/what-is-asymmetric-encryption/
- 
+
 To generate an SSH key pair, the utility `ssh-keygen` can be using in the terminal on a majority of Windows/MacOs/Linux systems.
 
 Usage:
@@ -118,13 +118,17 @@ Example Arch Linux usage:
 Check folder for keys, add screenshots
 
 # Adding a Public Key to your DigitalOcean Account 
-https://docs.digitalocean.com/reference/doctl/reference/compute/ssh-key/
-copy public key
-`doctl compute ssh-key create <key-name> --public-key <pub-key>`
-`key-name` key's name on DigitalOcean
-`pub-key` contents of public key folder
 
-verify it's added: `doctl compute ssh-key list`
+1. Copy the contents of the public key.
+2. Type the command `doctl compute ssh-key create <KEY-NAME> --public-key <PUB-KEY>` and hit enter.
+- <KEY-NAME> The name you want to give the key, such as 'ACIT-2420'
+- <PUB-KEY> The contents of the public key file.
+3. Type the command `doctl compute ssh-key list` to list all of the SSH keys on this account. 
+4. Verify that your key was added correctly
+
+
+
+https://docs.digitalocean.com/reference/doctl/reference/compute/ssh-key/
 
 # Adding an Arch Linux Image to DigitalOcean
 `doctl compute image create <image-name> --image-url <url> --region <region>`
