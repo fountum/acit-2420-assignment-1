@@ -131,13 +131,27 @@ Check folder for keys, add screenshots
 https://docs.digitalocean.com/reference/doctl/reference/compute/ssh-key/
 
 # Adding an Arch Linux Image to DigitalOcean
-`doctl compute image create <image-name> --image-url <url> --region <region>`
-`<image-name>` custom image's name on DigitalOcean. You'll use this name to issue commands using this image
-`<url>` distribution's download url
-`<region>` what server the image is stored on. pick a region which is geographically the closest to you
-- To see a list of regions, use `doctl compute region list`
 
-insert example use here
+DigitalOcean hosts a number of pre-configures images for Debain, Ubuntu, and CentOS but we will have to import Arch Linux manually.
+
+1. Find the latest version of Arch Linux cloud image in the [Arch Linux Package Registry](https://gitlab.archlinux.org/archlinux/arch-boxes/-/packages/)
+- Cloud images are pre-configured versions of operating systems intended for cloud infrastructure. They come with settings and software like Cloud-Init to make creating cloud instances more effecient.
+- The file name will contain `cloudimg` and end with `.qcow2`
+[screen shot]
+
+2. Right click the file name and choose *copy link* in the context menu
+3. In the terminal, type in the command: `doctl compute region list`. This will list the servers and where they are located.
+(screenshot)
+4. Choose a region that is closest geographically and remember its slug. In this guide we will use `SFO3` 
+5. To import your image to DigitalOcean, use the following command:
+`doctl compute image create <IMAGE-NAME> --image-url <URL> --region <REGION>`
+- `<IMAGE-NAME>` The name you want to give this image on DigitalOcean. This is how you'll refer to this image in commands
+- `<URL>` URL of the Arch Linux cloud image
+- `<REGION>` What servers the image is saved to 
+(example?)
+(output?)
+6. To verify that the custom image was added, type in the command `doctl compute image list`. This commands show all of images available
+(screenshot)
 
 # Creating a cloud-init YAML configuration
 
