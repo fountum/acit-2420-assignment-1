@@ -4,7 +4,6 @@ Assignment 1 for ACIT 2420
 
   
 - [Introduction](#Introduction)
-- [Prerequisites](#Prerequisites)
 - [Installing and Configuring doctl](#installing-and-configuring-doctl)
 - [Creating SSH Key Pair](#Creating-SSH-Key-Pair)
 - [Adding a Public Key to your DigitalOcean Account](#adding-a-public-key-to-your-digitalocean-account)
@@ -16,6 +15,10 @@ Assignment 1 for ACIT 2420
 - [External Resources](#External-Resources)
 - [Citations](#Citations)
 
+
+# Introduction
+
+This tutorial will teach you how to create Arch Linux based virtual machines using DigitalOcean with the `doctl` command line interface. No knowledge of DigitalOcean, `doctl`, cloud-init, or Linux systems is needed to understand this guide. 
 
 # Installing and Configuring doctl
 
