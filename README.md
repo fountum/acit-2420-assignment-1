@@ -245,21 +245,31 @@ Once you've created this file, you're ready to create a droplet.
 
 
 https://wiki.archlinux.org/title/Users_and_groups
+
+
 # Creating a Droplet
 
-With an SSH key pair generated, an Arch Linux cloud image imported, and a cloud-init YAML file created a DigitalOcean Droplet can be created.
+With an SSH key pair generated, an Arch Linux cloud image imported, and a cloud-init YAML file created, we are ready to create a DigitalOcean droplet.
 
-1. Choose a Droplet configuration (Droplet size) from the command `doctl compute size list`
-This commands list all the Droplet sizes available on DigitalOcean. In this guide, we will s-1vcpu-512mb-10gb or <slug>, the cheapest size available.
-(screenshot of output)
+1. Choose a droplet size (VM specs) from the size list: 
+```doctl compute size list```
+- This command lists all the virtual machine specs available on DigitalOcean. 
+- In this guide, we will use `s-1vcpu-512mb-10gb`.
 
 2. To create a droplet, use the command
-`doctl compute droplet create <droplet-name> --image <image> --size <size> --region <region> --user-data-file <path> --ssh-keys <key>`
-- `--image <IMAGE-NAME>` Image to be installed on the droplet, specified in [Adding an Arch Linux Image to DigitalOcean](#adding-an-arch-linux-image-to-digitalocean)
+```doctl compute droplet create <DROPLET-NAME> --image <IMAGAE> --size <SIZE> --region <REGION> --user-data-file <PATH> --ssh-keys <SSH-KEY> --wait```
+- `--image <IMAGE-NAME>` ID of image to be installed on the droplet, specified in [Adding an Arch Linux Image to DigitalOcean](#adding-an-arch-linux-image-to-digitalocean)
 - `--size <SIZE>` Droplet size
-- `--region <REGION>` What server Droplet is created on. In this guide we will use `SFO3` 
-- `--user-data-file <FILEPATH>` configured cloud-init YAML file from [Createing a Cloud-Init YAML Configuration](#creating-a-cloud-init-yaml-configuration) to be exectued on the Droplet
-- `--ssh-keys <PUB-KEY>` name of public key given to DigitalOcean in [Adding a Public Key to your DigitalOcean Account](#adding-a-public-key-to-your-digitalocean-account)
+- `--region <REGION>` What server the droplet is created on. 
+- `--user-data-file <FILEPATH>` configured cloud-init YAML file from [Createing a Cloud-Init YAML Configuration](#creating-a-cloud-init-yaml-configuration) to be exectued on the when creating the droplet
+- `--ssh-keys <SSH-KEY>` fignerprint of public key on DigitalOcean. See [Adding a Public Key to your DigitalOcean Account](#adding-a-public-key-to-your-digitalocean-account)
+- `--wait` prevents user from using the terminal before the droplet is finished initalizing
+
+> [!NOTE]
+> If you forget any of the names or IDs for the options above use the following command to see what is available on DigitalOcean:
+> ```doctl compute <ITEM> list```
+> Substitute `<ITEM>` with `size`, `region`, `image`, or `ssh-key`
+After using this command, the terminal will stop reciving your inputs until the droplet is finished initalizing.
 
 (output)
 
