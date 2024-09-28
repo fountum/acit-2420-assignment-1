@@ -52,22 +52,26 @@ Confirm that you are installing the correct packages and confirm the download (t
 
 ![](./assets/installed-doctl.png)
 
-# Generating a DigitalOcean API token
+# Generating a DigitalOcean API Token
 
 To allow `doctl` to access your DigitalOcean account, an API token must be generated. API tokens are string that authenticates programs to access the API of another program.
 
 1. Log in to your DigitalOcean control panel and navigate to the [Application and API page](https://cloud.digitalocean.com/account/api/tokens)
+
 ![](/assets/digitalocean-api.png)
-2. Click *Generate New Token*
-3. Type in a name for the token. Then click *Full Access* under Scopes.
+2. Click **Generate New Token**
+3. Type in a name for the token. Then click **Full Access** under Scopes.
+
 ![](/assets//digitalocean-token-creation.png)
 
->[!NOTE] 
-> *Token scopes cannot be modified after creation*
-> Enabling *Full Access* with this key will allow programs with the API token to perform create, read, update, and delete (CRUD) operations on your DigitalOcean. To restrict what is actions are possible, select *Custom Scope* instead of *Full Access*. 
-> As a security measure, the token will be deleted after 90 days by default. This can be changed to less or more time, but it's recommended to have tokens expire for security purposes.
+>[!WARNING] 
+> Enabling **Full Access** with this key will allow programs with the API token to perform create, read, update, and delete (CRUD) operations on your DigitalOcean. To restrict what is CRUD operations are possible, select **Custom Scope** instead of **Full Access**. 
+>**Token scopes cannot be modified after creation.**
 
-4. Click *Generate Token* at the bottom of the page. 
+>[!IMPORTANT]
+> By default, the token will be deleted after 90 days. This is a security measure to prevent how much damage a leaked API token can cause. It's recommended to *not* set the token to not expire.
+
+4. Click **Generate Token** at the bottom of the page. 
 
 5. Copy the token and save it in a text file. The token will only be shown to you once, so don't skip this step.
 
