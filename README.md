@@ -18,33 +18,36 @@ Assignment 1 for ACIT 2420
 
 # Introduction
 
-This tutorial will teach you how to create Arch Linux based virtual machines using DigitalOcean with the `doctl` command line interface. No knowledge of DigitalOcean, `doctl`, cloud-init, or Linux systems is needed to understand this guide. Most of the steps in this guide will be done using a terminal. 
+This tutorial will teach you how to create Arch Linux based virtual machines on DigitalOcean with the `doctl` command line interface. No knowledge of DigitalOcean, `doctl`, cloud-init, or Linux systems is needed to understand this guide. Most of the steps in this guide will be done using a terminal. 
 
 # Installing and Configuring doctl
 
-`doctl` is a command line interface that allows you to manage your DigitalOcean resources using a terminal. It's capabale of most of the fucntionality available on the DigitalOcean web UI. (Citation?)
+`doctl` is a command line interface that allows you to manage your DigitalOcean resources using a terminal. It's capabale of most of the fucntionality available on the DigitalOcean web UI. 
 
-## Downloading `doctl`
+## Downloading and Installing `doctl`
 
-Depending on your operating system (OS), there are several ways to download `doctl`. This guide will use commands that work Arch Linux. If you are using a different OS, check [DigitalOcean's installation documentation](https://docs.digitalocean.com/reference/doctl/how-to/install/#step-1-install-doctl).
+Depending on your operating system (OS), there are several ways to download `doctl`. This guide will use commands that work in Arch Linux. If you are using a different OS, check [DigitalOcean's installation documentation](https://docs.digitalocean.com/reference/doctl/how-to/install/#step-1-install-doctl).
 
 `doctl` is available on the Arch Linux package repository, so the `pacman` utility can be used to install it:
-`sudo pacman -S doctl`
+```sudo pacman -S doctl```
+
+>[!NOTE]
+>Before installing packages it is recommended to use the command `pacman -Syu`. This command will synchronizes (install) packages, synchronize the package database (which contains metadata about packages), and update all system packages. 
 
 Command explanation:
-- `sudo` temporary gives a non-root user root privleges, or administrative permissions. Because we are installing packages, we must use `sudo` before `pacman`.  
-  - `sudo` is used instead of staying logged in as the root user to prevent damaging the system. Logging in as the root user increases the chances of a misused command modifying critical files and damage the system (citation?)
-- `pacman` is the package manager on Arch Linux. A package manager is a program that can install, update, and remove software packages. (https://learning.oreilly.com/library/view/linux-for-system/9781803247946/B18575_08.xhtml#_idParaDest-110) 
-  - The flag `-S` syncronizes the packages installed on the machine with the package repository. In other words, it installs and updates software.
+- `sudo` temporarily gives a non-root user root privleges, or administrative permissions. Because we are installing packages, we must use `sudo` before `pacman`.  
+  - However, this command only works if you have suffcient privleges.
+  - `sudo` is used instead of staying logged in as the root user to prevent damaging the system. Logging in as the root user increases the chances of typos or bugs that can harm the system.
+- `pacman` is the package manager on Arch Linux. A package manager is a program that can install, update, and remove software packages.  
+  - `-S` tells `pacman` to syncronize packages on the machine with the package repository. In other words, this flag will install and update software.
 
 After using this command, the console will show
 - the package and dependencies to be installed
-- ????? Figure out what other input goes here
+- download and installed size
+- prompt to confirm download
 
-Ensure that you are installing the correct packages and confirm the download (type and enter `y`)
+Confirm that you are installing the correct packages and confirm the download (type `y` and press enter)
 INSERT SCREENSHOT OF COMMAND + OUTPUT
-
-To confirm `doctl` had been properly installed, use (`man doctl`)
 
 ## Generating a DigitalOcean API token
 
@@ -273,3 +276,8 @@ https://cloudinit.readthedocs.io/en/latest/howto/debug_user_data.html
 
 # External Resources
 (doctl Reference)[https://docs.digitalocean.com/reference/doctl/reference/]
+
+# References
+Rudareanu, V., & Baturin, D. (2023). Linux for System Administrators. Packt Publishing. https://learning.oreilly.com/library/view/linux-for-system/9781803247946/
+(n.d.). Pacman. Arch Linux Wiki. https://wiki.archlinux.org/title/Pacman#Upgrading_packages
+(n.d.). Sudo. Arch Linux Wiki. https://wiki.archlinux.org/title/Sudo
