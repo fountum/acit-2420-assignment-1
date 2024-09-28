@@ -280,20 +280,21 @@ https://docs.digitalocean.com/reference/doctl/reference/compute/droplet/
 
 # Connecting to Droplet
 
-Once your Droplet is created you can remotely connect to it using `SSH` in your terminal.
+Once your droplet is created, you can remotely connect to it using `SSH` in your terminal.
 
-1. Copy the public IP of your droplet from the command `doctl compute droplet get <DROPLET-NAME> --format PublicIPv4`
-- This command gets information about the droplet `<DROPLET-NAME>`
-- The flag `--format` changes the output to show only the public IPv4 address
+1. Copy the public IP of your droplet. If it no longer visible, use the following command to get it:
+````doctl compute droplet get <DROPLET-NAME> --format PublicIPv4```
 
 2. To connect to the Droplet, type in the following command:
-`ssh -i <PRIVATE-KEY> arch@<IP>`
+`ssh -i <PRIVATE-KEY> <USERNAME>@<IP>`
 - `<PRIVATE-KEY>` Filepath of the corrisponding private key. If you've followed this guide, it should be located in the `~/.ssh` directory.
-- `<IP>` The public IP of the droplet from step 1
+- `<USERNAME>` User name defined in cloud-init YAML file
+- `<IP>` The public IP of the droplet
 
+3. When you connect to a system for the first time, you will be asked if you want to connect. Type and enter `yes`.
 (Screenshot, first time connecting etc..)
 
-If the connection is sucessful, your command line will change. (be more specific)
+If the connection is sucessful, the hostname on your command line will change to what you names your droplet.
 
 # Verifying Configuration
 
