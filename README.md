@@ -77,21 +77,23 @@ To allow `doctl` to access your DigitalOcean account, an API token must be gener
 
 Once you've copied and saved your API token, you've completed this step.
 
-## Adding your API token to doctl
+## Adding your API Token to doctl
 
-In the terminal, enter the following commands to attach an API token to doctl:
-`doctl auth init --context <CONTEXT-NAME>`
-- `--context` means "authentication context", or essential a different DigitalOcean account.  (https://docs.digitalocean.com/reference/doctl/reference/auth/)
-You will be prompeted to enter in your API token. After that, a list of all contexts will be shown. (maybe wrong)
+Adding the API Token to `doctl` will allow you to use `doctl` to make changes to your droplets.
 
-To switch contexts, use the command:
-`doctl auth switch --context <CONTEXT-NAME>`
-(What does this show + screenshots)
+1. Enter this command into the terminal: 
+```doctl auth init```
+- This command used to give doctl permission access your DigitalOcean account within the scope of the API token 
 
-To verify that you correctly added the token, get your account details using the command:
-`doctl account get`
-Your terminal output should looks similar to this:
-(screen shot)
+After using the command, you will be prompeted to enter in your API token. 
+
+2. Paste in your API token and press enter. `doctl` will begin validating your token.
+
+3. Verify that you correctly added the token, get your account details using the following command:
+```doctl account get```
+- This command will try to get your account details.
+
+If the command successfully prints your account information, you've succesfully added you API token to `doctl`.
 
 ### External References
 https://docs.digitalocean.com/reference/doctl/how-to/install/
