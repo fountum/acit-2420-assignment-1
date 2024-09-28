@@ -76,30 +76,36 @@ To allow `doctl` to access your DigitalOcean account, an API token must be gener
 5. Copy the token and save it in a text file. The token will only be shown to you once, so don't skip this step.
 
 >[!WARNING]
-> Do not share this token with anyone. Possessing and API token will give them access to your DigitalOcean droplets. 
+> Do not share this token with anyone. Possessing this API token will give them control of your DigitalOcean droplets. 
 
 ![](/assets/digitalocean-api-token.png)
 
 Once you've copied and saved your API token, you've completed this step.
 
-# Adding Your API Token to doctl
+# Adding Your API Token to `doctl`
 
-Adding the API Token to `doctl` will allow you to use `doctl` to make changes to your droplets.
+Adding an API Token to `doctl` will allow you to use the command line to make changes to your droplets.
 
 1. Enter this command into the terminal: 
 ```doctl auth init```
-- This command used to give doctl permission access your DigitalOcean account within the scope of the API token 
+- This command used to give `doctl` permission access your DigitalOcean account within the scope of the token 
 
 After using the command, you will be prompted to enter in your API token. 
+
 ![](/assets/doctl-auth-init.png)
+
 2. Paste in your API token and press enter. `doctl` will begin validating your token.
-![](/assets/doctl-validate-token.png)
+
+![](/assets/doctl-validate-token.png
+)
 3. Verify that you correctly added the token, get your account details using the following command:
 ```doctl account get```
-- This command will try to get your account details.
+
+This command will return your account details if it was successfully authenticated.
+
 ![](/assets/doctl-account-get.png)
 
-If the command successfully prints your account information, you've successfully added you API token to `doctl`.
+If see your account information in the, you've successfully added your API token to `doctl`.
 
 ### External References
 https://docs.digitalocean.com/reference/doctl/how-to/install/
