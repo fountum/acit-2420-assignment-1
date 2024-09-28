@@ -227,8 +227,7 @@ packages:
 disable_root: true
 ```
 Explanation
-- `#cloud-config` Header *required* at the start of file. Cloud-init will not recongnize the file as cloud config data if omitted.
-    - citation : https://cloudinit.readthedocs.io/en/latest/explanation/format.html#headers-and-content-types
+- `#cloud-config` Header **required** at the start of file. Cloud-init will not recongnize the file as cloud config data if omitted.
 - `users` defines users and their properties
   - `name`: user's name. You will use this to connect to the droplet 
   - `primary_group`: group that Arch Linux will assign the files created by this user.
@@ -249,13 +248,10 @@ Explanation
 
 Once you've created this file, you're ready to create a droplet.
 
-  https://wiki.archlinux.org/title/Sudo#Disable_root_login
-- ref: https://wiki.archlinux.org/title/Users_and_groups#User_groups
-
-
-
-https://wiki.archlinux.org/title/Users_and_groups
-
+### External Resources
+[User data formats](https://cloudinit.readthedocs.io/en/latest/explanation/format.html)
+[Users and Groups](https://wiki.archlinux.org/title/Users_and_groups)
+[Sudo: Disable Root Login](https://wiki.archlinux.org/title/Sudo#Disable_root_login)
 
 # Creating a Droplet
 
