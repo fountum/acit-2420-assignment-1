@@ -173,7 +173,9 @@ DigitalOcean hosts a number of pre-configured images for Debain, Ubuntu, and Cen
 3. In the terminal, use the following command to list DigitalOcean regions: 
 ```doctl compute region list```
 - Regions refers to where DigitalOcean has data centers that host the droplets.
+
 ![](/assets/doctl-compute-region-list.png)
+
 4. Choose a region that is closest geographically and remember its corresponding slug. In this guide we will use `SFO3` 
 5. To import your image to DigitalOcean, use the following command:
 ```doctl compute image create <IMAGE-NAME> --image-url <URL> --region <REGION>```
@@ -188,11 +190,10 @@ Example usage:
 
 DigitalOcean will take a few moments to import the image. 
 
+# What is cloud-init?
+Cloud-init is a package used to quickly set up and configure systems, VMs, or cloud-based servers. Using a configuration file created by the user, cloud-init will apply those settings to the system without additional manual input. It comes pre-packaged with most cloud images of operating systems, including the cloud image of Arch Linux we are using. 
+
 # Creating a cloud-init configuration
-
-> What is cloud-init?
-> Cloud-init is a package used to quickly set up and configure systems, VMs, or cloud-based servers. Using a configuration file created by the user, cloud-init will apply those settings to the system without additional manual input. It comes pre-packaged with most cloud images of operating systems, including the cloud image of Arch Linux we are using. 
-
 In this step we will create a YAML file to pass to cloud-init when we create our Droplet.
 
 There are many configuration options available using cloud-init. In this guide we will use cloud-init to:
