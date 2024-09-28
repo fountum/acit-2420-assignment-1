@@ -53,21 +53,25 @@ Confirm that you are installing the correct packages and confirm the download (t
 
 ## Generating a DigitalOcean API token
 
-To allow `doctl` to access your DigitalOcean account, an API token must be generated. API tokens are string that authenticates programs to access the API of another program. (citation?)
+To allow `doctl` to access your DigitalOcean account, an API token must be generated. API tokens are string that authenticates programs to access the API of another program.
 
-1. Log in DigitalOcean and navigate to the [Application and API page](https://cloud.digitalocean.com/account/api/tokens)
+1. Log in to your DigitalOcean control panel and navigate to the [Application and API page](https://cloud.digitalocean.com/account/api/tokens)
 2. Click *Generate New Token*
-3. (SCREEN SHOT OF PAGE) Type in a name for the key. Then click *Full Access* under Scopes
+3. Type in a name for the token. Then click *Full Access* under Scopes.
 
-NOTE: 
-- Enabling Full Access with this key will allow programs with the APK token to perform create, read, update, and delete (CRUD) opertions. To restrict what is actions are possible, select a custom scope below. *Token scopes cannot be modifed after creation*(picture here, maybe explanation?)
-- As a security measure, the token will be deleted after 90 days by default. This can be changed to less or more time, but it's recommended to have tokens expire for security purposes (citation?)
+>[!NOTE] 
+> *Token scopes cannot be modified after creation*
+> Enabling *Full Access* with this key will allow programs with the API token to perform create, read, update, and delete (CRUD) opertions on your DigitalOcean. To restrict what is actions are possible, select *Custom Scope* instead of *Full Access*. 
+> As a security measure, the token will be deleted after 90 days by default. This can be changed to less or more time, but it's recommended to have tokens expire for security purposes.
 
-4. Scroll to the bottom and click *Generate Token*
-(I assume it's done here but maybe more?)
+4. Click *Generate Token* at the bottom of the page. 
 
-5. Copy and save the token in a file.
-*CAUTION: the token will only be shown to you once.*
+5. Copy the token and save it in a text file. The token will only be shown to you once, so don't skip this step.
+
+>[!WARNING]
+> Do not share this token with anyone. Posessing and API token will give them access to your DigitalOcean droplets. 
+
+Once you've copied and saved your API token, you've completed this step.
 
 ## Adding your API token to doctl
 
