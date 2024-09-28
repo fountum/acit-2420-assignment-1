@@ -28,13 +28,13 @@ This tutorial will teach you how to create Arch Linux based virtual machines on 
 
 Depending on your operating system (OS), there are several ways to download `doctl`. This guide will use commands that work in Arch Linux. If you are using a different OS, check [DigitalOcean's installation documentation](https://docs.digitalocean.com/reference/doctl/how-to/install/#step-1-install-doctl).
 
+>[!NOTE]
+>Before installing packages it is recommended to use the command `pacman -Syu`. This command will synchronizes (install) packages, synchronizes the package database (which contains metadata about packages), and update all system packages. 
+
 `doctl` is available on the Arch Linux package repository, so the `pacman` utility can be used to install it:
 ```sudo pacman -S doctl```
 
->[!NOTE]
->Before installing packages it is recommended to use the command `pacman -Syu`. This command will synchronizes (install) packages, synchronize the package database (which contains metadata about packages), and update all system packages. 
-
-Command explanation:
+Explanation:
 - `sudo` temporarily gives a non-root user root privleges, or administrative permissions. Because we are installing packages, we must use `sudo` before `pacman`.  
   - However, this command only works if you have sufficient privileges.
   - `sudo` is used instead of staying logged in as the root user to prevent damaging the system. Logging in as the root user increases the chances of typos or bugs that can harm the system.
@@ -49,6 +49,7 @@ After using this command, the console will show
 ![](./assets/pacman-doctl.png)
 
 Confirm that you are installing the correct packages and confirm the download (type `y` and press enter). A successful installation gives the following output:
+
 ![](./assets/installed-doctl.png)
 
 # Generating a DigitalOcean API token
