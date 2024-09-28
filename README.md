@@ -18,11 +18,11 @@ Assignment 1 for ACIT 2420
 
 # Introduction
 
-This tutorial will teach you how to create Arch Linux based virtual machines on DigitalOcean with the `doctl` command line interface. No knowledge of DigitalOcean, `doctl`, cloud-init, or Linux systems is needed to understand this guide. Most of the steps in this guide will be done using a terminal. 
+This tutorial will teach you how to create Arch Linux based virtual machines on DigitalOcean with the `doctl` command line interface. No knowledge of DigitalOcean, `doctl` or cloud-init is needed to understand this guide. Most of the steps in this guide will be done using a terminal.
 
 # Installing and Configuring doctl
 
-`doctl` is a command line interface that allows you to manage your DigitalOcean resources using a terminal. It's capabale of most of the fucntionality available on the DigitalOcean web UI. 
+`doctl` is a command line interface that allows you to manage your DigitalOcean resources using a terminal. It's capable of most of the fucntionality available on the DigitalOcean web UI. 
 
 ## Downloading and Installing `doctl`
 
@@ -36,10 +36,10 @@ Depending on your operating system (OS), there are several ways to download `doc
 
 Command explanation:
 - `sudo` temporarily gives a non-root user root privleges, or administrative permissions. Because we are installing packages, we must use `sudo` before `pacman`.  
-  - However, this command only works if you have suffcient privleges.
+  - However, this command only works if you have sufficient privileges.
   - `sudo` is used instead of staying logged in as the root user to prevent damaging the system. Logging in as the root user increases the chances of typos or bugs that can harm the system.
 - `pacman` is the package manager on Arch Linux. A package manager is a program that can install, update, and remove software packages.  
-  - `-S` tells `pacman` to syncronize packages on the machine with the package repository. In other words, this flag will install and update software.
+  - `-S` tells `pacman` to synchronize packages on the machine with the package repository. In other words, this flag will install and update software.
 
 After using this command, the console will show
 - the package and dependencies to be installed
@@ -63,7 +63,7 @@ To allow `doctl` to access your DigitalOcean account, an API token must be gener
 
 >[!NOTE] 
 > *Token scopes cannot be modified after creation*
-> Enabling *Full Access* with this key will allow programs with the API token to perform create, read, update, and delete (CRUD) opertions on your DigitalOcean. To restrict what is actions are possible, select *Custom Scope* instead of *Full Access*. 
+> Enabling *Full Access* with this key will allow programs with the API token to perform create, read, update, and delete (CRUD) operations on your DigitalOcean. To restrict what is actions are possible, select *Custom Scope* instead of *Full Access*. 
 > As a security measure, the token will be deleted after 90 days by default. This can be changed to less or more time, but it's recommended to have tokens expire for security purposes.
 
 4. Click *Generate Token* at the bottom of the page. 
@@ -71,7 +71,7 @@ To allow `doctl` to access your DigitalOcean account, an API token must be gener
 5. Copy the token and save it in a text file. The token will only be shown to you once, so don't skip this step.
 
 >[!WARNING]
-> Do not share this token with anyone. Posessing and API token will give them access to your DigitalOcean droplets. 
+> Do not share this token with anyone. Possessing and API token will give them access to your DigitalOcean droplets. 
 
 ![](/assets/digitalocean-api-token.png)
 
@@ -85,7 +85,7 @@ Adding the API Token to `doctl` will allow you to use `doctl` to make changes to
 ```doctl auth init```
 - This command used to give doctl permission access your DigitalOcean account within the scope of the API token 
 
-After using the command, you will be prompeted to enter in your API token. 
+After using the command, you will be prompted to enter in your API token. 
 ![](/assets/doctl-auth-init.png)
 2. Paste in your API token and press enter. `doctl` will begin validating your token.
 ![](/assets/doctl-validate-token.png)
@@ -94,7 +94,7 @@ After using the command, you will be prompeted to enter in your API token.
 - This command will try to get your account details.
 ![](/assets/doctl-account-get.png)
 
-If the command successfully prints your account information, you've succesfully added you API token to `doctl`.
+If the command successfully prints your account information, you've successfully added you API token to `doctl`.
 
 ### External References
 https://docs.digitalocean.com/reference/doctl/how-to/install/
@@ -102,12 +102,12 @@ https://docs.digitalocean.com/reference/doctl/how-to/install/
 # Creating an SSH Key Pair
 
 ## What is Secure Shell (SSH)?
-Secure Shell (SSH) is a protocol that allows for data to sent securely over unsecure networks. SSH is used to remotely connect to servers and issue commands. It uses public key cryptography to encrypt and decrypt data, as well as authenitcate users. At a high level, the protocol works like this in the context of remote servers:
+Secure Shell (SSH) is a protocol that allows for data to sent securely over unsecure networks. SSH is used to remotely connect to servers and issue commands. It uses public key cryptography to encrypt and decrypt data, as well as authenticate users. At a high level, the protocol works like this in the context of remote servers:
 - An SSH key pair is generated, resulting in one *public key* and *private key*
   - Public keys are used to encrypt data; this is given to the server
   - Private keys are used to decrypt data; this is kept by the user/client
   - The keys themselves are put in a cryptography algorithm with data to produces what looks like random data but is actually a very specific output from the key + data  
-  - Only the corrisponding key pairs work with each other
+  - Only the corresponding key pairs work with each other
 - When establishing a connection to the serve, the client provides the private key to authenticate themself
 - When sending data, the server will use the public key to encrypt the data, which can only be decrypted using the private key
   - This prevents 'man-in-the-middle' attacks as attackers will not beable to view the contents of the data if they get a hold of it
@@ -166,7 +166,7 @@ DigitalOcean hosts a number of pre-configured images for Debain, Ubuntu, and Cen
 ```doctl compute region list```
 - Regions refers to where DigitalOcean has data centers that host the droplets.
 ![](/assets/doctl-compute-region-list.png)
-4. Choose a region that is closest geographically and remember its corrisponding slug. In this guide we will use `SFO3` 
+4. Choose a region that is closest geographically and remember its corresponding slug. In this guide we will use `SFO3` 
 5. To import your image to DigitalOcean, use the following command:
 ```doctl compute image create <IMAGE-NAME> --image-url <URL> --region <REGION>```
 - `<IMAGE-NAME>` The name you want to give this image on DigitalOcean.
@@ -218,24 +218,24 @@ packages:
 disable_root: true
 ```
 Explanation
-- `#cloud-config` Header *required* at the start of file. Cloud-init will not recongize the file as cloud config data if omitted.
+- `#cloud-config` Header *required* at the start of file. Cloud-init will not recongnize the file as cloud config data if omitted.
     - citation : https://cloudinit.readthedocs.io/en/latest/explanation/format.html#headers-and-content-types
 - `users` defines users and their properties
   - `name`: user's name. You will use this to connect to the droplet 
   - `primary_group`: group that Arch Linux will assign the files created by this user.
   - `gecos`: optional comment.
   - `group`: groups users is member of. `wheel` is an admin group given to users to perform administrative actions
-  - `sudo`: user's sudo privleges. 
+  - `sudo`: user's sudo privileges. 
     - First `ALL` specifies what hosts commands can be ran on
     - Second `(ALL)` specifies what users commands can be run as
     - `NOPASSWD:` enables the use of sudo without a password
     - Third `ALL` allows all commands to be used
-  - `ssh-authorized-keys`: SSH public keys whose corrisponding private keys are allow to log in as this user.
+  - `ssh-authorized-keys`: SSH public keys whose corresponding private keys are allow to log in as this user.
 - `packages`: Packages that will automatically installed on initialization.
 - `disable_root`: If set to true, disables logging as the root user using SSH
-  - Every Linux distribution has a root user named `root`, which has unlimited privleges
-  - Attackers can much better odds of bruteforcing a password for `root` than bruteforcing  both a username and password
-  - Disabling root log in prevents this vulernability
+  - Every Linux distribution has a root user named `root`, which has unlimited privileges
+  - Attackers can much better odds of bruteforcing a password for `root` than both a username and password
+  - Disabling root log in prevents this vulnerability
   - NOTE: it's still possible to log in as the root user after connection is established
 
 Once you've created this file, you're ready to create a droplet.
@@ -262,9 +262,9 @@ With an SSH key pair generated, an Arch Linux cloud image imported, and a cloud-
 - `--image <IMAGE-NAME>` ID of image to be installed on the droplet, specified in [Adding an Arch Linux Image to DigitalOcean](#adding-an-arch-linux-image-to-digitalocean)
 - `--size <SIZE>` Droplet size
 - `--region <REGION>` What server the droplet is created on. 
-- `--user-data-file <FILEPATH>` configured cloud-init YAML file from [Createing a Cloud-Init YAML Configuration](#creating-a-cloud-init-yaml-configuration) to be exectued on the when creating the droplet
+- `--user-data-file <FILEPATH>` configured cloud-init YAML file from [Creating a Cloud-Init YAML Configuration](#creating-a-cloud-init-yaml-configuration) to be exectued on the when creating the droplet
 - `--ssh-keys <SSH-KEY>` fignerprint of public key on DigitalOcean. See [Adding a Public Key to your DigitalOcean Account](#adding-a-public-key-to-your-digitalocean-account)
-- `--wait` prevents user from using the terminal before the droplet is finished initalizing
+- `--wait` prevents user from using the terminal before the droplet is finished initializing
 
 > [!NOTE]
 > If you forget any of the names or IDs for the options above use the following command to see what is available on DigitalOcean:
@@ -273,7 +273,7 @@ With an SSH key pair generated, an Arch Linux cloud image imported, and a cloud-
 
 ![](/assets/doctl-droplet-create.png)
 
-After using this command, the terminal will stop reciving your inputs until the droplet is finished initalizing, how ever you may still have to wait for a few more moments before connecting to the droplet.
+After using this command, the terminal will stop receiving your inputs until the droplet is finished initializing, how ever you may still have to wait for a few more moments before connecting to the droplet.
 
 ## External Resources
 https://docs.digitalocean.com/reference/doctl/reference/compute/droplet/
@@ -287,21 +287,21 @@ Once your droplet is created, you can remotely connect to it using `SSH` in your
 
 2. To connect to the Droplet, type in the following command:
 `ssh -i <PRIVATE-KEY> <USERNAME>@<IP>`
-- `<PRIVATE-KEY>` Filepath of the corrisponding private key. If you've followed this guide, it should be located in the `~/.ssh` directory.
+- `<PRIVATE-KEY>` Filepath of the corresponding private key. If you've followed this guide, it should be located in the `~/.ssh` directory.
 - `<USERNAME>` User name defined in cloud-init YAML file
 - `<IP>` The public IP of the droplet
 
 3. When you connect to a system for the first time, you will be asked if you want to connect. Type and enter `yes`.
 ![](/assets/ssh.png)
 
-If the connection is sucessful, the hostname on your command line will change to what you names your droplet.
+If the connection is successful, the hostname on your command line will change to what you nameed your droplet.
 
 # Verifying Configuration
 
-Formatting errors in the YAML file can result in your cloud-init configuration not executing properly. Unfortuneatly, cloud-init won't directly throw errors so we will have to manually check if the configuration was executed. This section will only cover changes made in the YAML script provided. For more information about debugging cloud-init, see [How to debug cloud-init](https://cloudinit.readthedocs.io/en/latest/howto/debugging.html).
+Formatting errors in the YAML file can result in your cloud-init configuration not executing properly. Unfortunately, cloud-init won't directly throw errors so we will have to manually check if the configuration was executed. This section will only cover changes made in the YAML script provided. For more information about debugging cloud-init, see [How to debug cloud-init](https://cloudinit.readthedocs.io/en/latest/howto/debugging.html).
 
 ## Checking Packages
-`pacman -Q` qureies the local database on the system. In other words it returns a list of every package installed on your system. Combining it with string will find packages that pattern matches that string. If you use `pacman -Q <PACKAGE>` with any package listed in the YAML file, you should see the package listed. If not, cloud-init did not execute the atleast this portion of configuration properly.
+`pacman -Q` queries the local database on the system. In other words it returns a list of every package installed on your system. Combining it with string will find packages that pattern matches that string. If you use `pacman -Q <PACKAGE>` with any package listed in the YAML file, you should see the package listed. If not, cloud-init did not execute the atleast this portion of configuration properly.
 
 ![](/assets/pacman-Q.png)
 
