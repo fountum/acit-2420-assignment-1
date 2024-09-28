@@ -110,18 +110,20 @@ If see your account information in the, you've successfully added your API token
 ### External References
 https://docs.digitalocean.com/reference/doctl/how-to/install/
 
+# What is Secure Shell (SSH)?
+Secure Shell (SSH) is a protocol that allows for data to sent securely over unsecure networks. SSH is used to remotely connect to servers and issue commands. It uses public key cryptography to encrypt and decrypt data, as well as authenticate users. At a high level, the protocol works like this in the context of remote servers:
+- An SSH key pair is generated, resulting in one *public key* and *private key*
+  - Public keys are used to encrypt data; this is given to the server
+  - Private keys are used to decrypt data; this is kept by the user/client
+  - The keys themselves are put in a cryptography algorithm with data to produces what looks like random data but is actually a very specific output from the key + data  
+  - Only the corresponding key pairs work with each other
+- When establishing a connection to the serve, the client provides the private key to authenticate themself
+- When sending data, the server will use the public key to encrypt the data, which can only be decrypted using the private key
+  - This prevents 'man-in-the-middle' attacks as attackers will not beable to view the contents of the data if they get a hold of it
+
+
 # Creating an SSH Key Pair
 
-> What is Secure Shell (SSH)?
-> Secure Shell (SSH) is a protocol that allows for data to sent securely over unsecure networks. SSH is used to remotely connect to servers and issue commands. It uses public key cryptography to encrypt and decrypt data, as well as authenticate users. At a high level, the protocol works like this in the context of remote servers:
-> - An SSH key pair is generated, resulting in one *public key* and *private key*
->   - Public keys are used to encrypt data; this is given to the server
->   - Private keys are used to decrypt data; this is kept by the user/client
->   - The keys themselves are put in a cryptography algorithm with data to produces what looks like random data but is actually a very specific output from the key + data  
->   - Only the corresponding key pairs work with each other
-> - When establishing a connection to the serve, the client provides the private key to authenticate themself
-> - When sending data, the server will use the public key to encrypt the data, which can only be decrypted using the private key
->   - This prevents 'man-in-the-middle' attacks as attackers will not beable to view the contents of the data if they get a hold of it
 
 To generate an SSH key pair, the utility `ssh-keygen` can be using in the terminal on Windows,MacOs, or Linux systems.
 
