@@ -46,8 +46,10 @@ After using this command, the console will show
 - download and installed size
 - prompt to confirm download
 
-Confirm that you are installing the correct packages and confirm the download (type `y` and press enter)
-INSERT SCREENSHOT OF COMMAND + OUTPUT
+![](./assets/pacman-doctl.png)
+
+Confirm that you are installing the correct packages and confirm the download (type `y` and press enter). A successful installation gives the following output:
+![](./assets/installed-doctl.png)
 
 ## Generating a DigitalOcean API token
 
