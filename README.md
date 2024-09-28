@@ -169,8 +169,6 @@ DigitalOcean hosts a number of pre-configured images for Debain, Ubuntu, and Cen
 >[!NOTE] 
 > This Arch Linux image is known as a **cloud image**. Cloud images are pre-configured versions of operating systems intended for cloud infrastructure. They come with settings and software like cloud-init to make creating cloud instances more effecient.
 
-![](/assets/arch-linux-image.png)
-
 2. Right click the file name and choose **Copy Link** in the context menu
 3. In the terminal, use the following command to list DigitalOcean regions: 
 ```doctl compute region list```
