@@ -221,7 +221,7 @@ Explanation
 - `#cloud-config` Header *required* at the start of file. Cloud-init will not recongize the file as cloud config data if omitted.
     - citation : https://cloudinit.readthedocs.io/en/latest/explanation/format.html#headers-and-content-types
 - `users` defines users and their properties
-  - `name`: user's name
+  - `name`: user's name. You will use this to connect to the droplet 
   - `primary_group`: group that Arch Linux will assign the files created by this user.
   - `gecos`: optional comment.
   - `group`: groups users is member of. `wheel` is an admin group given to users to perform administrative actions
@@ -230,6 +230,7 @@ Explanation
     - Second `(ALL)` specifies what users commands can be run as
     - `NOPASSWD:` enables the use of sudo without a password
     - Third `ALL` allows all commands to be used
+  - `ssh-authorized-keys`: SSH public keys whose corrisponding private keys are allow to log in as this user.
 - `packages`: Packages that will automatically installed on initialization.
 - `disable_root`: If set to true, disables logging as the root user using SSH
   - Every Linux distribution has a root user named `root`, which has unlimited privleges
@@ -269,6 +270,10 @@ With an SSH key pair generated, an Arch Linux cloud image imported, and a cloud-
 > If you forget any of the names or IDs for the options above use the following command to see what is available on DigitalOcean:
 > ```doctl compute <ITEM> list```
 > Substitute `<ITEM>` with `size`, `region`, `image`, or `ssh-key`
+
+Example usage
+```doctl compute droplet create demo-droplet --image 166456591 --size s-1vcpu-512mb-10gb --region sfo3 --user-data-file config.yml --ssh-keys 43531024 --wait```
+
 After using this command, the terminal will stop reciving your inputs until the droplet is finished initalizing.
 
 (output)
