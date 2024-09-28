@@ -159,13 +159,13 @@ DigitalOcean hosts a number of pre-configured images for Debain, Ubuntu, and Cen
 >[!NOTE] 
 > This Arch Linux image is known as a *cloud image*. Cloud images are pre-configured versions of operating systems intended for cloud infrastructure. They come with settings and software like cloud-init to make creating cloud instances more effecient.
 
-[screen shot]
+![](/assets/arch-linux-image.png)
 
 2. Right click the file name and choose *Copy Link* in the context menu
 3. In the terminal, use the following command to list DigitalOcean regions: 
 ```doctl compute region list```
 - Regions refers to where DigitalOcean has data centers that host the droplets.
-(screenshot)
+![](/assets/doctl-compute-region-list.png)
 4. Choose a region that is closest geographically and remember its corrisponding slug. In this guide we will use `SFO3` 
 5. To import your image to DigitalOcean, use the following command:
 ```doctl compute image create <IMAGE-NAME> --image-url <URL> --region <REGION>```
@@ -175,6 +175,8 @@ DigitalOcean hosts a number of pre-configured images for Debain, Ubuntu, and Cen
 
 Example usage:
 ```doctl compute image create arch-linux-cloud-image --image-url https://gitlab.archlinux.org/archlinux/arch-boxes/-/package_files/7529/download --region sfo3```
+
+![](/assets/doctl-image-create.png)
 
 DigitalOcean will take a few moments to import the image. 
 
