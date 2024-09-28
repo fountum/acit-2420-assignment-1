@@ -20,11 +20,11 @@ Assignment 1 for ACIT 2420
 
 This tutorial will teach you how to create Arch Linux based virtual machines on DigitalOcean with the `doctl` command line interface. No knowledge of DigitalOcean, `doctl` or cloud-init is needed to understand this guide. Most of the steps in this guide will be done using a terminal.
 
-# Installing and Configuring doctl
+# What is `doctl`?
 
 `doctl` is a command line interface that allows you to manage your DigitalOcean resources using a terminal. It's capable of most of the fucntionality available on the DigitalOcean web UI. 
 
-## Downloading and Installing `doctl`
+# Downloading and Installing `doctl`
 
 Depending on your operating system (OS), there are several ways to download `doctl`. This guide will use commands that work in Arch Linux. If you are using a different OS, check [DigitalOcean's installation documentation](https://docs.digitalocean.com/reference/doctl/how-to/install/#step-1-install-doctl).
 
@@ -51,7 +51,7 @@ After using this command, the console will show
 Confirm that you are installing the correct packages and confirm the download (type `y` and press enter). A successful installation gives the following output:
 ![](./assets/installed-doctl.png)
 
-## Generating a DigitalOcean API token
+# Generating a DigitalOcean API token
 
 To allow `doctl` to access your DigitalOcean account, an API token must be generated. API tokens are string that authenticates programs to access the API of another program.
 
@@ -77,7 +77,7 @@ To allow `doctl` to access your DigitalOcean account, an API token must be gener
 
 Once you've copied and saved your API token, you've completed this step.
 
-## Adding Your API Token to doctl
+# Adding Your API Token to doctl
 
 Adding the API Token to `doctl` will allow you to use `doctl` to make changes to your droplets.
 
@@ -101,18 +101,17 @@ https://docs.digitalocean.com/reference/doctl/how-to/install/
 
 # Creating an SSH Key Pair
 
-## What is Secure Shell (SSH)?
-Secure Shell (SSH) is a protocol that allows for data to sent securely over unsecure networks. SSH is used to remotely connect to servers and issue commands. It uses public key cryptography to encrypt and decrypt data, as well as authenticate users. At a high level, the protocol works like this in the context of remote servers:
-- An SSH key pair is generated, resulting in one *public key* and *private key*
-  - Public keys are used to encrypt data; this is given to the server
-  - Private keys are used to decrypt data; this is kept by the user/client
-  - The keys themselves are put in a cryptography algorithm with data to produces what looks like random data but is actually a very specific output from the key + data  
-  - Only the corresponding key pairs work with each other
-- When establishing a connection to the serve, the client provides the private key to authenticate themself
-- When sending data, the server will use the public key to encrypt the data, which can only be decrypted using the private key
-  - This prevents 'man-in-the-middle' attacks as attackers will not beable to view the contents of the data if they get a hold of it
+> What is Secure Shell (SSH)?
+> Secure Shell (SSH) is a protocol that allows for data to sent securely over unsecure networks. SSH is used to remotely connect to servers and issue commands. It uses public key cryptography to encrypt and decrypt data, as well as authenticate users. At a high level, the protocol works like this in the context of remote servers:
+> - An SSH key pair is generated, resulting in one *public key* and *private key*
+>   - Public keys are used to encrypt data; this is given to the server
+>   - Private keys are used to decrypt data; this is kept by the user/client
+>   - The keys themselves are put in a cryptography algorithm with data to produces what looks like random data but is actually a very specific output from the key + data  
+>   - Only the corresponding key pairs work with each other
+> - When establishing a connection to the serve, the client provides the private key to authenticate themself
+> - When sending data, the server will use the public key to encrypt the data, which can only be decrypted using the private key
+>   - This prevents 'man-in-the-middle' attacks as attackers will not beable to view the contents of the data if they get a hold of it
 
-## Generating the Keys
 To generate an SSH key pair, the utility `ssh-keygen` can be using in the terminal on Windows,MacOs, or Linux systems.
 
 ```ssh-keygen -t <ENCRYPTION> -f <PATH> -C <COMMENT>```
@@ -148,7 +147,7 @@ As previously mentioned, a key element of SSH is giving the server the public ke
 The terminal will output ID, name, and fingerprint of the key. Your SSH public key was successfully added.
 
 
-## External Resources
+### External Resources
 https://docs.digitalocean.com/reference/doctl/reference/compute/ssh-key/
 
 # Adding an Arch Linux Image to DigitalOcean
@@ -275,7 +274,7 @@ With an SSH key pair generated, an Arch Linux cloud image imported, and a cloud-
 
 After using this command, the terminal will stop receiving your inputs until the droplet is finished initializing, how ever you may still have to wait for a few more moments before connecting to the droplet.
 
-## External Resources
+### External Resources
 https://docs.digitalocean.com/reference/doctl/reference/compute/droplet/
 
 # Connecting to Droplet
@@ -296,11 +295,11 @@ Once your droplet is created, you can remotely connect to it using `SSH` in your
 
 If the connection is successful, the hostname on your command line will change to what you nameed your droplet.
 
-# Verifying Configuration
+# Verifying cloud-init Configuration
 
 Formatting errors in the YAML file can result in your cloud-init configuration not executing properly. Unfortunately, cloud-init won't directly throw errors so we will have to manually check if the configuration was executed. This section will only cover changes made in the YAML script provided. For more information about debugging cloud-init, see [How to debug cloud-init](https://cloudinit.readthedocs.io/en/latest/howto/debugging.html).
 
-## Checking Packages
+## Checking Package Installation
 `pacman -Q` queries the local database on the system. In other words it returns a list of every package installed on your system. Combining it with string will find packages that pattern matches that string. If you use `pacman -Q <PACKAGE>` with any package listed in the YAML file, you should see the package listed. If not, cloud-init did not execute the atleast this portion of configuration properly.
 
 ![](/assets/pacman-Q.png)
