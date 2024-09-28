@@ -152,27 +152,31 @@ The terminal will output ID, name, and fingerprint of the key. Your SSH public k
 https://docs.digitalocean.com/reference/doctl/reference/compute/ssh-key/
 
 # Adding an Arch Linux Image to DigitalOcean
+DigitalOcean hosts a number of pre-configured images for Debain, Ubuntu, and CentOS. To use Arch Linux in DigitalOcean droplets,  we will have to import an image manually.
 
-DigitalOcean hosts a number of pre-configures images for Debain, Ubuntu, and CentOS but we will have to import Arch Linux manually.
+1. Find the latest version of Arch Linux cloud image that contains `cloudimg` and ends with `.qcow2` in the [Arch Linux Package Registry](https://gitlab.archlinux.org/archlinux/arch-boxes/-/packages/)
 
-1. Find the latest version of Arch Linux cloud image in the [Arch Linux Package Registry](https://gitlab.archlinux.org/archlinux/arch-boxes/-/packages/)
-- Cloud images are pre-configured versions of operating systems intended for cloud infrastructure. They come with settings and software like Cloud-Init to make creating cloud instances more effecient.
-- The file name will contain `cloudimg` and end with `.qcow2`
+>[!NOTE] 
+> This Arch Linux image is known as a *cloud image*. Cloud images are pre-configured versions of operating systems intended for cloud infrastructure. They come with settings and software like cloud-init to make creating cloud instances more effecient.
+
 [screen shot]
 
-2. Right click the file name and choose *copy link* in the context menu
-3. In the terminal, type in the command: `doctl compute region list`. This will list the servers and where they are located.
+2. Right click the file name and choose *Copy Link* in the context menu
+3. In the terminal, use the following command to list DigitalOcean regions: 
+```doctl compute region list```
+- Regions refers to where DigitalOcean has data centers that host the droplets.
 (screenshot)
-4. Choose a region that is closest geographically and remember its slug. In this guide we will use `SFO3` 
+4. Choose a region that is closest geographically and remember its corrisponding slug. In this guide we will use `SFO3` 
 5. To import your image to DigitalOcean, use the following command:
-`doctl compute image create <IMAGE-NAME> --image-url <URL> --region <REGION>`
-- `<IMAGE-NAME>` The name you want to give this image on DigitalOcean. This is how you'll refer to this image in commands
-- `<URL>` URL of the Arch Linux cloud image
-- `<REGION>` What servers the image is saved to 
-(example?)
-(output?)
-6. To verify that the custom image was added, type in the command `doctl compute image list`. This commands show all of images available
-(screenshot)
+```doctl compute image create <IMAGE-NAME> --image-url <URL> --region <REGION>```
+- `<IMAGE-NAME>` The name you want to give this image on DigitalOcean.
+- `<URL>` URL of the Arch Linux cloud image you copied
+- `<REGION>` Slug of the region you want to use 
+
+Example usage:
+```doctl compute image create arch-linux-cloud-image --image-url https://gitlab.archlinux.org/archlinux/arch-boxes/-/package_files/7529/download --region sfo3```
+
+DigitalOcean will take a few moments to import the image. 
 
 # Creating a cloud-init YAML configuration
 
