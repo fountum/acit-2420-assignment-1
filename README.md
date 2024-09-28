@@ -271,14 +271,13 @@ With an SSH key pair generated, an Arch Linux cloud image imported, and a cloud-
 > ```doctl compute <ITEM> list```
 > Substitute `<ITEM>` with `size`, `region`, `image`, or `ssh-key`
 
-Example usage
-```doctl compute droplet create demo-droplet --image 166456591 --size s-1vcpu-512mb-10gb --region sfo3 --user-data-file config.yml --ssh-keys 43531024 --wait```
+![](/assets/doctl-droplet-create.png)
 
-After using this command, the terminal will stop reciving your inputs until the droplet is finished initalizing.
+After using this command, the terminal will stop reciving your inputs until the droplet is finished initalizing, how ever you may still have to wait for a few more moments before connecting to the droplet.
 
-(output)
-
+## External Resources
 https://docs.digitalocean.com/reference/doctl/reference/compute/droplet/
+
 # Connecting to Droplet
 
 Once your Droplet is created you can remotely connect to it using `SSH` in your terminal.
