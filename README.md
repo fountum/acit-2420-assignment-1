@@ -56,8 +56,10 @@ Confirm that you are installing the correct packages and confirm the download (t
 To allow `doctl` to access your DigitalOcean account, an API token must be generated. API tokens are string that authenticates programs to access the API of another program.
 
 1. Log in to your DigitalOcean control panel and navigate to the [Application and API page](https://cloud.digitalocean.com/account/api/tokens)
+![](/assets/digialocean-api.png)
 2. Click *Generate New Token*
 3. Type in a name for the token. Then click *Full Access* under Scopes.
+![](/assets//digitalocean-token-creation.png)
 
 >[!NOTE] 
 > *Token scopes cannot be modified after creation*
@@ -70,6 +72,8 @@ To allow `doctl` to access your DigitalOcean account, an API token must be gener
 
 >[!WARNING]
 > Do not share this token with anyone. Posessing and API token will give them access to your DigitalOcean droplets. 
+
+![](/assets/digitalocean-api-token.png)
 
 Once you've copied and saved your API token, you've completed this step.
 
