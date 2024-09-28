@@ -112,7 +112,7 @@ Secure Shell (SSH) is a protocol that allows for data to sent securely over unse
 - When sending data, the server will use the public key to encrypt the data, which can only be decrypted using the private key
   - This prevents 'man-in-the-middle' attacks as attackers will not beable to view the contents of the data if they get a hold of it
 
-## Generating an SSH Key Pair
+## Generating the Keys
 To generate an SSH key pair, the utility `ssh-keygen` can be using in the terminal on Windows,MacOs, or Linux systems.
 
 ```ssh-keygen -t <ENCRYPTION> -f <PATH> -C <COMMENT>```
