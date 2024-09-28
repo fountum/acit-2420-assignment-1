@@ -99,7 +99,6 @@ If the command successfully prints your account information, you've succesfully 
 ### External References
 https://docs.digitalocean.com/reference/doctl/how-to/install/
 
-
 # Creating an SSH Key Pair
 
 ## What is Secure Shell (SSH)?
@@ -113,10 +112,6 @@ Secure Shell (SSH) is a protocol that allows for data to sent securely over unse
 - When sending data, the server will use the public key to encrypt the data, which can only be decrypted using the private key
   - This prevents 'man-in-the-middle' attacks as attackers will not beable to view the contents of the data if they get a hold of it
 
-(citations please)
-https://www.cloudflare.com/learning/access-management/what-is-ssh/
-https://www.cloudflare.com/learning/ssl/how-does-public-key-encryption-work/
-https://www.cloudflare.com/learning/ssl/what-is-asymmetric-encryption/
 
 To generate an SSH key pair, the utility `ssh-keygen` can be using in the terminal on a majority of Windows/MacOs/Linux systems.
 
@@ -294,3 +289,6 @@ https://cloudinit.readthedocs.io/en/latest/howto/debug_user_data.html
 Rudareanu, V., & Baturin, D. (2023). Linux for System Administrators. Packt Publishing. https://learning.oreilly.com/library/view/linux-for-system/9781803247946/
 (n.d.). Pacman. Arch Linux Wiki. https://wiki.archlinux.org/title/Pacman#Upgrading_packages
 (n.d.). Sudo. Arch Linux Wiki. https://wiki.archlinux.org/title/Sudo
+(n.d.). What is SSH? | Secure Shell (SSH) protocol. Cloudflare. https://www.cloudflare.com/learning/access-management/what-is-ssh/
+(n.d.). What is asymmetric encryption? Cloudflare. https://www.cloudflare.com/learning/ssl/what-is-asymmetric-encryption/
+(n.d.). How does public key cryptography work? Cloudflare. https://www.cloudflare.com/learning/ssl/how-does-public-key-encryption-work/
