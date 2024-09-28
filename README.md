@@ -124,7 +124,7 @@ Command Explanation:
 - `-C` An optional comment that's appended on to the end of the public key. Usually contact information of the key holder.
 
 Example Arch Linux command:
-```ssh-keygen -t ed25519 -f ~/.ssh/do-key -C 'demo-key'```
+```ssh-keygen -t ed25519 -f ~/.ssh/demo-key -C '<email>'```
 
 After entering the command, you will be prompted to enter a passphrase. While this provides more security, a passpharse-less SSH key will still be more secure than using only password.
 
