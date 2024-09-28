@@ -292,7 +292,7 @@ Once your droplet is created, you can remotely connect to it using `SSH` in your
 - `<IP>` The public IP of the droplet
 
 3. When you connect to a system for the first time, you will be asked if you want to connect. Type and enter `yes`.
-(Screenshot, first time connecting etc..)
+![](/assets/ssh.png)
 
 If the connection is sucessful, the hostname on your command line will change to what you names your droplet.
 
