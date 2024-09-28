@@ -140,10 +140,13 @@ As previously mentioned, a key element of SSH is giving the server the public ke
 1. Copy the contents of the public key file.
 2. Use the following command to add the public key to your account:
 ```doctl compute ssh-key create <KEY-NAME> --public-key <PUB-KEY>``` 
-- <KEY-NAME> The name you want to give the key, such as 'ACIT-2420'. This is only to help you identify the key.
-- <PUB-KEY> The contents of the public key file. Your key will have spaces in it, so use quotes.
+- `<KEY-NAME>` The name you want to give the key, such as 'ACIT-2420'. This is only to help you identify the key.
+- `<PUB-KEY>` The contents of the public key file. Your key will have spaces in it, so use quotes.
+
+![](/assets/doclt-ssh-key-create.png)
 
 The terminal will output ID, name, and fingerprint of the key. Your SSH public key was successfully added.
+
 
 ## External Resources
 https://docs.digitalocean.com/reference/doctl/reference/compute/ssh-key/
