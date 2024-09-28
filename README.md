@@ -86,12 +86,13 @@ Adding the API Token to `doctl` will allow you to use `doctl` to make changes to
 - This command used to give doctl permission access your DigitalOcean account within the scope of the API token 
 
 After using the command, you will be prompeted to enter in your API token. 
-
+![](/assets/doctl-auth-init.png)
 2. Paste in your API token and press enter. `doctl` will begin validating your token.
-
+![](/assets/doctl-validate-token.png)
 3. Verify that you correctly added the token, get your account details using the following command:
 ```doctl account get```
 - This command will try to get your account details.
+![](/assets/doctl-account-get.png)
 
 If the command successfully prints your account information, you've succesfully added you API token to `doctl`.
 
