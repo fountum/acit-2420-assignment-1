@@ -123,11 +123,16 @@ Command Explanation:
   - `C:\Users\<USERNAME>\.ssh` on Windows
 - `-C` An optional comment that's appended on to the end of the public key. Usually contact information of the key holder.
 
-Example Arch Linux usage:
+Example Arch Linux command:
 ```ssh-keygen -t ed25519 -f ~/.ssh/do-key -C 'demo-key'```
 
+After entering the command, you will be prompted to enter a passphrase. While this provides more security, a passpharse-less SSH key will still be more secure than using only password.
 
-Check folder for keys, add screenshots
+![](/assets/ssh-key.png)
+
+After you've generated the SSH keys, check the path where you've created the keys. Two files with the name you've specified will be there. The file ending in `.pub` is the public key. The file with no extension is the private key. 
+
+![](/assets/ssh-folder.png)
 
 # Adding a Public Key to your DigitalOcean Account 
 
