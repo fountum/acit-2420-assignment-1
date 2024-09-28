@@ -32,7 +32,9 @@ Depending on your operating system (OS), there are several ways to download `doc
 >Before installing packages it is recommended to use the command `pacman -Syu`. This command will synchronizes (install) packages, synchronizes the package database (which contains metadata about packages), and update all system packages. 
 
 `doctl` is available on the Arch Linux package repository, so the `pacman` utility can be used to install it:
-```sudo pacman -S doctl```
+```
+  sudo pacman -S doctl
+```
 
 Explanation:
 - `sudo` temporarily gives a non-root user root privleges, or administrative permissions. Because we are installing packages, we must use `sudo` before `pacman`.  
@@ -87,7 +89,9 @@ Once you've copied and saved your API token, you've completed this step.
 Adding an API Token to `doctl` will allow you to use the command line to make changes to your droplets.
 
 1. Enter this command into the terminal: 
-```doctl auth init```
+```
+  doctl auth init
+```
 - This command used to give `doctl` permission access your DigitalOcean account within the scope of the token 
 
 After using the command, you will be prompted to enter in your API token. 
@@ -99,8 +103,9 @@ After using the command, you will be prompted to enter in your API token.
 ![](/assets/doctl-validate-token.png
 )
 3. Verify that you correctly added the token, get your account details using the following command:
-```doctl account get```
-
+```
+  doctl account get
+```
 This command will return your account details if it was successfully authenticated.
 
 ![](/assets/doctl-account-get.png)
@@ -125,7 +130,9 @@ Secure Shell (SSH) is a protocol that allows for data to sent securely over unse
 # Creating an SSH Key Pair
 To generate an SSH key pair, the utility `ssh-keygen` can be using in the terminal on Windows,MacOs, or Linux systems.
 
-```ssh-keygen -t <ENCRYPTION> -f <PATH> -C <COMMENT>```
+```
+  ssh-keygen -t <ENCRYPTION> -f <PATH> -C <COMMENT>
+```
 Explanation:
 - `-t` Type of encryption used to generate the key. We will use `ed25519` in this example.
 - `-f` Path where the key is created and name of key. This should be the `.ssh` directory in your home directory.
@@ -134,7 +141,9 @@ Explanation:
 - `-C` An optional comment that's appended on to the end of the public key. Usually contact information of the key holder.
 
 Example Arch Linux command:
-```ssh-keygen -t ed25519 -f ~/.ssh/demo-key -C '<email>'```
+```
+  ssh-keygen -t ed25519 -f ~/.ssh/demo-key -C '<email>'
+```
 
 After entering the command, you will be prompted to enter a passphrase. While this provides more security, a passpharse-less SSH key will still be more secure than using only password.
 
@@ -149,7 +158,9 @@ As previously mentioned, a key element of SSH is giving the server the public ke
 
 1. Copy the contents of the public key file.
 2. Use the following command to add the public key to your account:
-```doctl compute ssh-key create <KEY-NAME> --public-key <PUB-KEY>``` 
+```
+  doctl compute ssh-key create <KEY-NAME> --public-key <PUB-KEY>
+``` 
 - `<KEY-NAME>` The name you want to give the key, such as 'ACIT-2420'. This is only to help you identify the key.
 - `<PUB-KEY>` The contents of the public key file. Your key will have spaces in it, so use quotes.
 
@@ -171,20 +182,28 @@ DigitalOcean hosts a number of pre-configured images for Debain, Ubuntu, and Cen
 
 2. Right click the file name and choose **Copy Link** in the context menu
 3. In the terminal, use the following command to list DigitalOcean regions: 
-```doctl compute region list```
+```
+  doctl compute region list
+```
+
 - Regions refers to where DigitalOcean has data centers that host the droplets.
 
 ![](/assets/doctl-compute-region-list.png)
 
 4. Choose a region that is closest geographically and remember its corresponding slug. In this guide we will use `SFO3` 
 5. To import your image to DigitalOcean, use the following command:
-```doctl compute image create <IMAGE-NAME> --image-url <URL> --region <REGION>```
+```
+  doctl compute image create <IMAGE-NAME> --image-url <URL> --region <REGION>
+```
+
 - `<IMAGE-NAME>` The name you want to give this image on DigitalOcean.
 - `<URL>` URL of the Arch Linux cloud image you copied
 - `<REGION>` Slug of the region you want to use 
 
 Example usage:
-```doctl compute image create arch-linux-cloud-image --image-url https://geo.mirror.pkgbuild.com/images/latest/Arch-Linux-x86_64-cloudimg-20240915.263127.qcow2 --region sfo3```
+```
+  doctl compute image create arch-linux-cloud-image --image-url https://geo.mirror.pkgbuild.com/images/latest/Arch-Linux-x86_64-cloudimg-20240915.263127.qcow2 --region sfo3
+```
 
 ![](/assets/doctl-image-create.png)
 
@@ -206,25 +225,25 @@ There are many configuration options available using cloud-init. In this guide w
 3. Fill in the missing data in the following code block and copy it into the `config.yml`:
 
 ```
-#cloud-config
-users:
-  - name: <USER-NAME>
-    primary_group: <GROUP>
-    gecos: <COMMENT>
-    groups: wheel
-    sudo: ["ALL=(ALL) NOPASSWD: ALL"]
-    shell: /bin/bash
-    ssh-authorized-keys:
-      - <public-key>   
+  #cloud-config
+  users:
+    - name: <USER-NAME>
+      primary_group: <GROUP>
+      gecos: <COMMENT>
+      groups: wheel
+      sudo: ["ALL=(ALL) NOPASSWD: ALL"]
+      shell: /bin/bash
+      ssh-authorized-keys:
+        - <public-key>   
 
-packages:
-  - neovim
-  - less
-  - bash-completion
-  - man-db
-  - git
+  packages:
+    - neovim
+    - less
+    - bash-completion
+    - man-db
+    - git
 
-disable_root: true
+  disable_root: true
 ```
 Explanation
 - `#cloud-config` Header **required** at the start of file. Cloud-init will not recongnize the file as cloud config data if omitted.
@@ -257,12 +276,16 @@ Once you've created this file, you're ready to create a droplet.
 With an SSH key pair generated, an Arch Linux cloud image imported, and a cloud-init YAML file created, we are ready to create a DigitalOcean droplet.
 
 1. Choose a droplet size (VM specs) from the size list: 
-```doctl compute size list```
+```
+  doctl compute size list
+```
 - This command lists all the virtual machine specs available on DigitalOcean. 
 - In this guide, we will use `s-1vcpu-512mb-10gb`.
 
 2. To create a droplet, use the command
-```doctl compute droplet create <DROPLET-NAME> --image <IMAGAE> --size <SIZE> --region <REGION> --user-data-file <PATH> --ssh-keys <SSH-KEY> --wait```
+```
+  doctl compute droplet create <DROPLET-NAME> --image <IMAGAE> --size <SIZE> --region <REGION> --user-data-file <PATH> --ssh-keys <SSH-KEY> --wait
+```
 - `--image <IMAGE-NAME>` ID of image to be installed on the droplet, specified in [Adding an Arch Linux Image to DigitalOcean](#adding-an-arch-linux-image-to-digitalocean)
 - `--size <SIZE>` Droplet size
 - `--region <REGION>` What server the droplet is created on. 
@@ -272,7 +295,9 @@ With an SSH key pair generated, an Arch Linux cloud image imported, and a cloud-
 
 > [!NOTE]
 > If you forget any of the names or IDs for the options above use the following command to see what is available on DigitalOcean:
-> ```doctl compute <ITEM> list```
+> ```
+>  doctl compute <ITEM> list
+> ```
 > Substitute `<ITEM>` with `size`, `region`, `image`, or `ssh-key`
 
 ![](/assets/doctl-droplet-create.png)
@@ -287,7 +312,9 @@ After using this command, the terminal will stop receiving your inputs until the
 Once your droplet is created, you can remotely connect to it using `SSH` in your terminal.
 
 1. Copy the public IP of your droplet. If it no longer visible, use the following command to get it:
-````doctl compute droplet get <DROPLET-NAME> --format PublicIPv4```
+```
+doctl compute droplet get <DROPLET-NAME> --format PublicIPv4
+```
 
 2. To connect to the Droplet, type in the following command:
 `ssh -i <PRIVATE-KEY> <USERNAME>@<IP>`
@@ -296,6 +323,7 @@ Once your droplet is created, you can remotely connect to it using `SSH` in your
 - `<IP>` The public IP of the droplet
 
 3. When you connect to a system for the first time, you will be asked if you want to connect. Type and enter `yes`.
+
 ![](/assets/ssh.png)
 
 If the connection is successful, the hostname on your command line will change to what you nameed your droplet.
