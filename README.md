@@ -348,7 +348,7 @@ Formatting errors in the YAML file can result in your cloud-init configuration n
 [How to validate user data cloud config](https://cloudinit.readthedocs.io/en/latest/howto/debug_user_data.html)  
 
 # External Resources
-(doctl Reference)[https://docs.digitalocean.com/reference/doctl/reference/]  
+[doctl Reference](https://docs.digitalocean.com/reference/doctl/reference/)  
 
 # Citations
 Rudareanu, V., & Baturin, D. (2023). Linux for System Administrators. Packt Publishing. https://learning.oreilly.com/library/view/linux-for-system/9781803247946/  
