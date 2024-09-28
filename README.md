@@ -254,7 +254,6 @@ Once you've created this file, you're ready to create a droplet.
 [Sudo: Disable Root Login](https://wiki.archlinux.org/title/Sudo#Disable_root_login)
 
 # Creating a Droplet
-
 With an SSH key pair generated, an Arch Linux cloud image imported, and a cloud-init YAML file created, we are ready to create a DigitalOcean droplet.
 
 1. Choose a droplet size (VM specs) from the size list: 
@@ -267,7 +266,7 @@ With an SSH key pair generated, an Arch Linux cloud image imported, and a cloud-
 - `--image <IMAGE-NAME>` ID of image to be installed on the droplet, specified in [Adding an Arch Linux Image to DigitalOcean](#adding-an-arch-linux-image-to-digitalocean)
 - `--size <SIZE>` Droplet size
 - `--region <REGION>` What server the droplet is created on. 
-- `--user-data-file <FILEPATH>` configured cloud-init YAML file from [Creating a Cloud-Init YAML Configuration](#creating-a-cloud-init-yaml-configuration) to be exectued on the when creating the droplet
+- `--user-data-file <FILEPATH>` configured cloud-init YAML file from [Creating a cloud-init Configuration](#creating-a-cloud-init-configuration) to be exectued on the when creating the droplet
 - `--ssh-keys <SSH-KEY>` fignerprint of public key on DigitalOcean. See [Adding a Public Key to your DigitalOcean Account](#adding-a-public-key-to-your-digitalocean-account)
 - `--wait` prevents user from using the terminal before the droplet is finished initializing
 
@@ -281,7 +280,7 @@ With an SSH key pair generated, an Arch Linux cloud image imported, and a cloud-
 After using this command, the terminal will stop receiving your inputs until the droplet is finished initializing, how ever you may still have to wait for a few more moments before connecting to the droplet.
 
 ### External Resources
-https://docs.digitalocean.com/reference/doctl/reference/compute/droplet/
+[doctl compute droplet documentation](https://docs.digitalocean.com/reference/doctl/reference/compute/droplet/)
 
 # Connecting to Droplet
 
