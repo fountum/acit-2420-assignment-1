@@ -135,16 +135,17 @@ After you've generated the SSH keys, check the path where you've created the key
 ![](/assets/ssh-folder.png)
 
 # Adding a Public Key to your DigitalOcean Account 
+As previously mentioned, a key element of SSH is giving the server the public key to encrypt data. The server in our scenario is our DigitalOcean droplet. In this step we will add the SSH public key we generated to our DigitalOcean account.
 
-1. Copy the contents of the public key.
-2. Type the command `doctl compute ssh-key create <KEY-NAME> --public-key <PUB-KEY>` and hit enter.
-- <KEY-NAME> The name you want to give the key, such as 'ACIT-2420'
-- <PUB-KEY> The contents of the public key file.
-3. Type the command `doctl compute ssh-key list` to list all of the SSH keys on this account. 
-4. Verify that your key was added correctly
+1. Copy the contents of the public key file.
+2. Use the following command to add the public key to your account:
+```doctl compute ssh-key create <KEY-NAME> --public-key <PUB-KEY>``` 
+- <KEY-NAME> The name you want to give the key, such as 'ACIT-2420'. This is only to help you identify the key.
+- <PUB-KEY> The contents of the public key file. Your key will have spaces in it, so use quotes.
 
+The terminal will output ID, name, and fingerprint of the key. Your SSH public key was successfully added.
 
-
+## External Resources
 https://docs.digitalocean.com/reference/doctl/reference/compute/ssh-key/
 
 # Adding an Arch Linux Image to DigitalOcean
