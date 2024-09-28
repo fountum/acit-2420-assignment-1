@@ -303,6 +303,8 @@ Formatting errors in the YAML file can result in your cloud-init configuration n
 ## Checking Packages
 `pacman -Q` qureies the local database on the system. In other words it returns a list of every package installed on your system. Combining it with string will find packages that pattern matches that string. If you use `pacman -Q <PACKAGE>` with any package listed in the YAML file, you should see the package listed. If not, cloud-init did not execute the atleast this portion of configuration properly.
 
+![](/assets/pacman-Q.png)
+
 
 https://cloudinit.readthedocs.io/en/latest/howto/debug_user_data.html
 
