@@ -180,67 +180,64 @@ Example usage:
 
 DigitalOcean will take a few moments to import the image. 
 
-# Creating a cloud-init YAML configuration
+# Creating a cloud-init configuration
 
-Cloud-init is a package create to quickly set up and configure systems, VMs, or cloud-based servers. Using a given configuration file, cloud-init will apply those settings without additional manual input. It comes pre-packaged with most cloud images of operating systems, such as the cloud image of Arch Linux we are using. In this step we will create a YAML file to pass to cloud-init when we create our Droplet.
+> What is cloud-init?
+> Cloud-init is a package used to quickly set up and configure systems, VMs, or cloud-based servers. Using a configuration file created by the user, cloud-init will apply those settings to the system without additional manual input. It comes pre-packaged with most cloud images of operating systems, including the cloud image of Arch Linux we are using. 
+
+In this step we will create a YAML file to pass to cloud-init when we create our Droplet.
 
 There are many configuration options available using cloud-init. In this guide we will use cloud-init to:
 - Add users
 - Install packages
 - Disable logging in as root via SSH
 
-(explain YAML?)
-(citation)
-
 1. Create a file titled `config.yml`
 2. Open the file in a text editor
-3. Copy the following text and paste it into the file:
+3. Fill in the missing data in the following code block and copy it into the `config.yml`:
 
 ```
 #cloud-config
 users:
-  - default
-
-system_info:
-  default_user:
-    name: arch
-    lock_passwd: true
-    gecos: default arch user if you see this it works
+  - name: <USER-NAME>
+    primary_group: <GROUP>
+    gecos: <COMMENT>
     groups: wheel
     sudo: ["ALL=(ALL) NOPASSWD: ALL"]
     shell: /bin/bash
     ssh-authorized-keys:
-      - <public-key>
+      - <public-key>   
 
 packages:
   - neovim
   - less
   - bash-completion
-  - tmux
+  - man-db
   - git
 
 disable_root: true
 ```
-
-- `#cloud-config` *Header required at the start of file*. Cloud-init will not recongize the file as cloud config data if omitted
+Explanation
+- `#cloud-config` Header *required* at the start of file. Cloud-init will not recongize the file as cloud config data if omitted.
     - citation : https://cloudinit.readthedocs.io/en/latest/explanation/format.html#headers-and-content-types
 - `users` defines users and their properties
-  - `default` creates the `default_user` defined in `system_info`
-- `name`: user's name
-- `lock_passwd`: prevents logging in as this user use a password. Can only be log in using SSH key.
-- `gecos`: optional comment for user
-- `group`: groups users is member of. `wheel` is an admin group given to users to perform administrative actions
-- `sudo`: user's sudo privleges. 
-  - First `ALL` specifies what hosts commands can be ran on
-  - Second `(ALL)` specifies what users commands can be run as
-  - `NOPASSWD:` enables the use of sudo without a password
-  - Third `ALL` allows all commands to be used
-  - citaton?
+  - `name`: user's name
+  - `primary_group`: group that Arch Linux will assign the files created by this user.
+  - `gecos`: optional comment.
+  - `group`: groups users is member of. `wheel` is an admin group given to users to perform administrative actions
+  - `sudo`: user's sudo privleges. 
+    - First `ALL` specifies what hosts commands can be ran on
+    - Second `(ALL)` specifies what users commands can be run as
+    - `NOPASSWD:` enables the use of sudo without a password
+    - Third `ALL` allows all commands to be used
+- `packages`: Packages that will automatically installed on initialization.
 - `disable_root`: If set to true, disables logging as the root user using SSH
   - Every Linux distribution has a root user named `root`, which has unlimited privleges
   - Attackers can much better odds of bruteforcing a password for `root` than bruteforcing  both a username and password
   - Disabling root log in prevents this vulernability
   - NOTE: it's still possible to log in as the root user after connection is established
+
+Once you've created this file, you're ready to create a droplet.
 
   https://wiki.archlinux.org/title/Sudo#Disable_root_login
 - ref: https://wiki.archlinux.org/title/Users_and_groups#User_groups
