@@ -123,12 +123,10 @@ Secure Shell (SSH) is a protocol that allows for data to sent securely over unse
 
 
 # Creating an SSH Key Pair
-
-
 To generate an SSH key pair, the utility `ssh-keygen` can be using in the terminal on Windows,MacOs, or Linux systems.
 
 ```ssh-keygen -t <ENCRYPTION> -f <PATH> -C <COMMENT>```
-Command Explanation:
+Explanation:
 - `-t` Type of encryption used to generate the key. We will use `ed25519` in this example.
 - `-f` Path where the key is created and name of key. This should be the `.ssh` directory in your home directory.
   - `~/.ssh` on Linux
@@ -166,14 +164,14 @@ https://docs.digitalocean.com/reference/doctl/reference/compute/ssh-key/
 # Adding an Arch Linux Image to DigitalOcean
 DigitalOcean hosts a number of pre-configured images for Debain, Ubuntu, and CentOS. To use Arch Linux in DigitalOcean droplets,  we will have to import an image manually.
 
-1. Find the latest version of Arch Linux cloud image that contains `cloudimg` and ends with `.qcow2` in the [Arch Linux Package Registry](https://gitlab.archlinux.org/archlinux/arch-boxes/-/packages/)
+1. Find the latest version of Arch Linux cloud image that contains `cloudimg` and ends with `.qcow2` in the [this Arch Linux image mirror](https://geo.mirror.pkgbuild.com/images/)
 
 >[!NOTE] 
-> This Arch Linux image is known as a *cloud image*. Cloud images are pre-configured versions of operating systems intended for cloud infrastructure. They come with settings and software like cloud-init to make creating cloud instances more effecient.
+> This Arch Linux image is known as a **cloud image**. Cloud images are pre-configured versions of operating systems intended for cloud infrastructure. They come with settings and software like cloud-init to make creating cloud instances more effecient.
 
 ![](/assets/arch-linux-image.png)
 
-2. Right click the file name and choose *Copy Link* in the context menu
+2. Right click the file name and choose **Copy Link** in the context menu
 3. In the terminal, use the following command to list DigitalOcean regions: 
 ```doctl compute region list```
 - Regions refers to where DigitalOcean has data centers that host the droplets.
@@ -186,7 +184,7 @@ DigitalOcean hosts a number of pre-configured images for Debain, Ubuntu, and Cen
 - `<REGION>` Slug of the region you want to use 
 
 Example usage:
-```doctl compute image create arch-linux-cloud-image --image-url https://gitlab.archlinux.org/archlinux/arch-boxes/-/package_files/7529/download --region sfo3```
+```doctl compute image create arch-linux-cloud-image --image-url https://geo.mirror.pkgbuild.com/images/latest/Arch-Linux-x86_64-cloudimg-20240915.263127.qcow2 --region sfo3```
 
 ![](/assets/doctl-image-create.png)
 
