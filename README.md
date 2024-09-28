@@ -112,18 +112,19 @@ Secure Shell (SSH) is a protocol that allows for data to sent securely over unse
 - When sending data, the server will use the public key to encrypt the data, which can only be decrypted using the private key
   - This prevents 'man-in-the-middle' attacks as attackers will not beable to view the contents of the data if they get a hold of it
 
+## Generating an SSH Key Pair
+To generate an SSH key pair, the utility `ssh-keygen` can be using in the terminal on Windows,MacOs, or Linux systems.
 
-To generate an SSH key pair, the utility `ssh-keygen` can be using in the terminal on a majority of Windows/MacOs/Linux systems.
-
-Usage:
-`ssh-keygen -t <ENCRYPTION> -f <PATH> -C <COMMENT>`
+```ssh-keygen -t <ENCRYPTION> -f <PATH> -C <COMMENT>```
 Command Explanation:
 - `-t` Type of encryption used to generate the key. We will use `ed25519` in this example.
 - `-f` Path where the key is created and name of key. This should be the `.ssh` directory in your home directory.
-- `-C` An optional comment that's appended on to the end of the public key
+  - `~/.ssh` on Linux
+  - `C:\Users\<USERNAME>\.ssh` on Windows
+- `-C` An optional comment that's appended on to the end of the public key. Usually contact information of the key holder.
 
 Example Arch Linux usage:
-`ssh-keygen -t ed25519 -f ~/.ssh/do-key -C 'ACIT-2420-Assignement1'`
+```ssh-keygen -t ed25519 -f ~/.ssh/do-key -C 'demo-key'```
 
 
 Check folder for keys, add screenshots
