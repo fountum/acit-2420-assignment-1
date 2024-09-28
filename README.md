@@ -1,17 +1,23 @@
-git@github.com:fountum/acit-2420-assignment-1.git# acit-2420-assignment-1
+git@github.com:fountum/acit-2420-assignment-1.git
+# acit-2420-assignment-1
 
 Assignment 1 for ACIT 2420
 
   
 - [Introduction](#Introduction)
-- [Installing and Configuring doctl](#installing-and-configuring-doctl)
-- [Creating SSH Key Pair](#Creating-SSH-Key-Pair)
+- [What is doctl?](#what-is-doctl)
+- [Downloading and Installing doctl](#downloading-and-installing-doctl)
+- [Generating a DigitalOcean API Token](#generating-a-digitalocean-api-token)
+- [Adding Your API Token to doctl](#adding-your-api-token-to-doctl)
+- [What is Secure Shell (SSH)?](#what-is-secure-shell-ssh)
+- [Creating an SSH Key Pair](#creating-an-ssh-key-pair)
 - [Adding a Public Key to your DigitalOcean Account](#adding-a-public-key-to-your-digitalocean-account)
 - [Adding an Arch Linux Image to DigitalOcean](#adding-an-arch-linux-image-to-digitalocean)
-- [Creating a cloud-init YAML configuration](#creating-a-cloud-int-yaml-configuration)
+- [What is cloud-init?](#what-is-cloud-init)
+- [Creating a cloud-init configuration](#creating-a-cloud-init-configuration)
 - [Creating a Droplet](#Creating-a-Droplet)
 - [Connecting to Droplet](#connecting-to-droplet)
-- [Verifying Configuration](#verifying-configuration)
+- [Verifying cloud-init Configuration](#verifying-cloud-init-configuration)
 - [External Resources](#External-Resources)
 - [Citations](#Citations)
 
@@ -142,7 +148,7 @@ Explanation:
 
 Example Arch Linux command:
 ```
-  ssh-keygen -t ed25519 -f ~/.ssh/demo-key -C '<email>'
+  ssh-keygen -t ed25519 -f ~/.ssh/demo-key -C '<EMAIL>'
 ```
 
 After entering the command, you will be prompted to enter a passphrase. While this provides more security, a passpharse-less SSH key will still be more secure than using only password.
@@ -234,7 +240,7 @@ There are many configuration options available using cloud-init. In this guide w
       sudo: ["ALL=(ALL) NOPASSWD: ALL"]
       shell: /bin/bash
       ssh-authorized-keys:
-        - <public-key>   
+        - <PUBLIC-KEY>   
 
   packages:
     - neovim
