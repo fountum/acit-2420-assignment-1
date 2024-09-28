@@ -112,8 +112,8 @@ This command will return your account details if it was successfully authenticat
 
 If see your account information in the, you've successfully added your API token to `doctl`.
 
-### External References
-https://docs.digitalocean.com/reference/doctl/how-to/install/
+### External Resources
+[doctl installation guide](https://docs.digitalocean.com/reference/doctl/how-to/install/)  
 
 # What is Secure Shell (SSH)?
 Secure Shell (SSH) is a protocol that allows for data to sent securely over unsecure networks. SSH is used to remotely connect to servers and issue commands. It uses public key cryptography to encrypt and decrypt data, as well as authenticate users. At a high level, the protocol works like this in the context of remote servers:
@@ -170,7 +170,7 @@ The terminal will output ID, name, and fingerprint of the key. Your SSH public k
 
 
 ### External Resources
-https://docs.digitalocean.com/reference/doctl/reference/compute/ssh-key/
+[doctl compute ssh-key Documentation](https://docs.digitalocean.com/reference/doctl/reference/compute/ssh-key/)  
 
 # Adding an Arch Linux Image to DigitalOcean
 DigitalOcean hosts a number of pre-configured images for Debain, Ubuntu, and CentOS. To use Arch Linux in DigitalOcean droplets,  we will have to import an image manually.
@@ -268,9 +268,10 @@ Explanation
 Once you've created this file, you're ready to create a droplet.
 
 ### External Resources
-[User data formats](https://cloudinit.readthedocs.io/en/latest/explanation/format.html)
-[Users and Groups](https://wiki.archlinux.org/title/Users_and_groups)
-[Sudo: Disable Root Login](https://wiki.archlinux.org/title/Sudo#Disable_root_login)
+[User data formats](https://cloudinit.readthedocs.io/en/latest/explanation/format.html)  
+[Users and Groups](https://wiki.archlinux.org/title/Users_and_groups)  
+[Sudo: Disable Root Login](https://wiki.archlinux.org/title/Sudo#Disable_root_login)  
+[Cloud config examples](https://cloudinit.readthedocs.io/en/latest/reference/examples.html)  
 
 # Creating a Droplet
 With an SSH key pair generated, an Arch Linux cloud image imported, and a cloud-init YAML file created, we are ready to create a DigitalOcean droplet.
@@ -337,16 +338,18 @@ Formatting errors in the YAML file can result in your cloud-init configuration n
 
 ![](/assets/pacman-Q.png)
 
-
-https://cloudinit.readthedocs.io/en/latest/howto/debug_user_data.html
+### External Resources
+[How to validate user data cloud config](https://cloudinit.readthedocs.io/en/latest/howto/debug_user_data.html)  
 
 # External Resources
-(doctl Reference)[https://docs.digitalocean.com/reference/doctl/reference/]
+(doctl Reference)[https://docs.digitalocean.com/reference/doctl/reference/]  
 
-# References
-Rudareanu, V., & Baturin, D. (2023). Linux for System Administrators. Packt Publishing. https://learning.oreilly.com/library/view/linux-for-system/9781803247946/
-(n.d.). Pacman. Arch Linux Wiki. https://wiki.archlinux.org/title/Pacman#Upgrading_packages
-(n.d.). Sudo. Arch Linux Wiki. https://wiki.archlinux.org/title/Sudo
-(n.d.). What is SSH? | Secure Shell (SSH) protocol. Cloudflare. https://www.cloudflare.com/learning/access-management/what-is-ssh/
-(n.d.). What is asymmetric encryption? Cloudflare. https://www.cloudflare.com/learning/ssl/what-is-asymmetric-encryption/
+# Citations
+Rudareanu, V., & Baturin, D. (2023). Linux for System Administrators. Packt Publishing. https://learning.oreilly.com/library/view/linux-for-system/9781803247946/  
+(n.d.). Pacman. Arch Linux Wiki. https://wiki.archlinux.org/title/Pacman#Upgrading_packages  
+(n.d.). Sudo. Arch Linux Wiki. https://wiki.archlinux.org/title/Sudo  
+(n.d.). What is SSH? | Secure Shell (SSH) protocol. Cloudflare. https://www.cloudflare.com/learning/access-management/what-is-ssh/  
+(n.d.). What is asymmetric encryption? Cloudflare. https://www.cloudflare.com/learning/ssl/what-is-asymmetric-encryption/  
 (n.d.). How does public key cryptography work? Cloudflare. https://www.cloudflare.com/learning/ssl/how-does-public-key-encryption-work/
+(n.d.). Introduction to cloud-init. Cloud-Init 24.3.1 Documentation. https://cloudinit.readthedocs.io/en/latest/explanation/introduction.html  
+(n.d.). User data formats. Cloud-Init 24.3.1 Documentation. https://cloudinit.readthedocs.io/en/latest/explanation/format.html  
